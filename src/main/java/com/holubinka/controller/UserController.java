@@ -1,6 +1,7 @@
 package com.holubinka.controller;
 
 import com.holubinka.controller.model.UserExt;
+import com.holubinka.model.Color;
 import com.holubinka.model.User;
 import com.holubinka.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,12 +50,12 @@ public class UserController {
                 .orElseGet(ResponseEntity.status(HttpStatus.NOT_FOUND)::build);
     }
 
-    /*@GetMapping(value = "/users/article-great-than-3")
+    @GetMapping(value = "/users/article-great-than-3")
     public ResponseEntity<List<User>> getDistinctUserByName() {
         return userService.getDistinctUsersByName()
                 .map(ResponseEntity::ok)
                 .orElseGet(ResponseEntity.status(HttpStatus.NOT_FOUND)::build);
-    }*/
+    }
 
     private URI getUri(String uri, Long id) {
         return URI.create(String.format("/%s/%s", uri, id));

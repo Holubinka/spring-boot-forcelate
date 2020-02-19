@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.security.Principal;
 
 @RestController
 
@@ -19,8 +20,8 @@ public class ArticleController {
     private ArticleService articleService;
 
     @PostMapping(value = "/article")
-    public ResponseEntity<Article> create(@RequestBody Article article) {
-        return articleService.create(article)
+    public ResponseEntity<Article> create(@RequestBody Article article, Principal principal) {
+        return articleService.create(article, principal.getName())
                 .map(c -> ResponseEntity.created(getUri("article", c.getId())).body(c))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.CONFLICT));
     }

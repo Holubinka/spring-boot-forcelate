@@ -49,17 +49,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<List<User>> getUsersByArticleColor(String color) {
-        return Optional.ofNullable(userDao.findAllByArticle_Color(Color.valueOf(color).toString()));
+        return Optional.ofNullable(userDao.findAllByArticle_Color(Color.valueOf(color.toUpperCase())));
     }
 
-   /* @Override
+    @Override
     public Optional<List<User>> getDistinctUsersByName() {
-        return Optional.of(userDao.findDistinctFirstNameOrderByFirstName().stream()
+        return Optional.of(userDao.getAllDistinctFirstNameBy().stream()
                 .filter(user -> user.getArticle()
                         .stream()
                         .count() >=3)
                 .collect(Collectors.toList()));
-    }*/
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

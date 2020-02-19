@@ -18,8 +18,6 @@ public interface UserService extends UserDetailsService {
 
     Optional<List<User>> getUsersByArticleColor(String color);
 
-/*
     Optional<List<User>> getDistinctUsersByName();
-*/
 
 }

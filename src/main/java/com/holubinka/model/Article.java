@@ -1,5 +1,7 @@
 package com.holubinka.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -31,6 +33,7 @@ public class Article {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_ARTICLE_ID")
+    @JsonIgnoreProperties("article")
     private User user;
 
     public Article() {

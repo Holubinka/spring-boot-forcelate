@@ -1,6 +1,8 @@
 package com.holubinka.dao;
 
+import com.holubinka.model.Color;
 import com.holubinka.model.User;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -12,7 +14,8 @@ public interface UserDao extends JpaRepository<User, Long> {
 
     List<User> findAllByAgeGreaterThanEqual(Integer age);
 
-    List<User> findAllByArticle_Color(String color);
+    List<User> findAllByArticle_Color(Color color);
 
-    /*List<User> findDistinctFirstNameOrderByFirstName();*/
+    @EntityGraph(attributePaths = {"article"})
+    List<User> getAllDistinctFirstNameBy();
 }

@@ -1,9 +1,12 @@
 package com.holubinka.controller.model;
 
+import com.holubinka.model.Article;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 public class UserExt {
     private Long id;
@@ -20,6 +23,8 @@ public class UserExt {
     @NotNull
     @Size(min = 8)
     private String confirmPassword;
+
+    private Integer age;
 
     public Long getId() {
         return id;
@@ -61,4 +66,11 @@ public class UserExt {
         this.confirmPassword = confirmPassword;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 }

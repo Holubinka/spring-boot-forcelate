@@ -97,6 +97,7 @@ public class User {
         result.setFirstName(userExt.getFirstName());
         result.setEmail(userExt.getEmail());
         result.setPassword(userExt.getPassword());
+        result.setAge(userExt.getAge());
         return result;
     }
 }

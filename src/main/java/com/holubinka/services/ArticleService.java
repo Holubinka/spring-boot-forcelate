@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface ArticleService {
 
-    Optional<Article> create(Article article);
+    Optional<Article> create(Article article, String email);
 }
