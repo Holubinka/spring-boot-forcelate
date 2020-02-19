@@ -1,8 +1,5 @@
 package com.holubinka.controller.model;
 
-import com.holubinka.model.User;
-import org.springframework.validation.Validator;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -11,7 +8,6 @@ import javax.validation.constraints.Size;
 public class UserExt {
     private Long id;
     private String firstName;
-    private String lastName;
 
     @Email
     @NotBlank
@@ -41,14 +37,6 @@ public class UserExt {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -73,14 +61,4 @@ public class UserExt {
         this.confirmPassword = confirmPassword;
     }
 
-    public static UserExt of(User user) {
-        UserExt result = new UserExt();
-        result.setId(user.getId());
-        result.setFirstName(user.getFirstName());
-        result.setLastName(user.getLastName());
-        result.setEmail(user.getEmail());
-        result.setPassword(user.getPassword());
-        result.setConfirmPassword(user.getPassword());
-        return result;
-    }
 }

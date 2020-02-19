@@ -1,32 +1,21 @@
 package com.holubinka.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.holubinka.controller.model.UserExt;
-import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
@@ -35,11 +24,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @Column(name = "LAST_NAME")
-    private String lastName;
+    @Column(name = "AGE")
+    private Integer age;
 
     @Column(name = "EMAIL", nullable = false, unique = true)
     private String email;
@@ -48,9 +38,10 @@ public class User {
     @Column(name = "PASSWORD", nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @Cascade(CascadeType.SAVE_UPDATE)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("user")
-    private List<UsersToTasks> usersToTasks = new ArrayList<>();
+    private List<Article> article = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -76,12 +67,12 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public String getEmail() {
@@ -92,22 +83,20 @@ public class User {
         this.email = email;
     }
 
+    public List<Article> getArticle() {
+        return article;
+    }
+
+    public void setArticle(List<Article> article) {
+        this.article = article;
+    }
 
     public static User of(UserExt userExt) {
         User result = new User();
         result.setId(userExt.getId());
         result.setFirstName(userExt.getFirstName());
-        result.setLastName(userExt.getLastName());
         result.setEmail(userExt.getEmail());
         result.setPassword(userExt.getPassword());
         return result;
-    }
-
-    public List<UsersToTasks> getUsersToTasks() {
-        return usersToTasks;
-    }
-
-    public void setUsersToTasks(List<UsersToTasks> usersToTasks) {
-        this.usersToTasks = usersToTasks;
     }
 }

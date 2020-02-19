@@ -1,6 +1,9 @@
 package com.holubinka.services;
 
+import com.holubinka.controller.exception.NotMatchedPasswordsException;
+import com.holubinka.controller.model.UserExt;
 import com.holubinka.dao.UserDao;
+import com.holubinka.model.Color;
 import com.holubinka.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +14,9 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static org.springframework.security.core.userdetails.User.builder;
 
 @Service("userServiceImpl")
 public class UserServiceImpl implements UserService {
@@ -22,7 +28,11 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public Optional<User> create(User user) {
+    public Optional<User> create(UserExt userExt) {
+        if (!userExt.getPassword().equals(userExt.getConfirmPassword())) {
+            throw new NotMatchedPasswordsException();
+        }
+        User user = User.of(userExt);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return Optional.ofNullable(userDao.save(user));
     }
@@ -33,14 +43,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<List<User>> getUsersByAge(Integer age) {
+        return Optional.ofNullable(userDao.findAllByAgeGreaterThanEqual(age));
+    }
+
+    @Override
+    public Optional<List<User>> getUsersByArticleColor(String color) {
+        return Optional.ofNullable(userDao.findAllByArticle_Color(Color.valueOf(color).toString()));
+    }
+
+   /* @Override
+    public Optional<List<User>> getDistinctUsersByName() {
+        return Optional.of(userDao.findDistinctFirstNameOrderByFirstName().stream()
+                .filter(user -> user.getArticle()
+                        .stream()
+                        .count() >=3)
+                .collect(Collectors.toList()));
+    }*/
+
+    @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userDao.findByEmail(email)
                 .map(this::toUserDetails)
-                .orElseGet(org.springframework.security.core.userdetails.User.builder().disabled(true)::build);
+                .orElseGet(builder().disabled(true)::build);
     }
 
     private UserDetails toUserDetails(User user) {
-        return org.springframework.security.core.userdetails.User.builder()
+        return builder()
                 .username(user.getEmail())
                 .password(user.getPassword())
                 .authorities(Collections.emptyList())
