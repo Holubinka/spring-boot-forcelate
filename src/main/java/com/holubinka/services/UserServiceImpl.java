@@ -6,6 +6,7 @@ import com.holubinka.dao.UserDao;
 import com.holubinka.model.Color;
 import com.holubinka.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,14 +31,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> create(UserExt userExt) {
         if (!userExt.getPassword().equals(userExt.getConfirmPassword())) {
-            throw new NotMatchedPasswordsException();
+            throw new NotMatchedPasswordsException("Паролі не збігаються");
         }
         User user = User.of(userExt);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        return Optional.ofNullable(userDao.save(user));
+        return Optional.of(userDao.save(user));
     }
 
     @Override
+    @EntityGraph(attributePaths = {"article"})
     public Optional<List<User>> getAll() {
         return Optional.ofNullable(userDao.findAll());
     }
@@ -57,7 +59,7 @@ public class UserServiceImpl implements UserService {
         return Optional.of(userDao.getAllDistinctFirstNameBy().stream()
                 .filter(user -> user.getArticle()
                         .stream()
-                        .count() >=3)
+                        .count() >= 3)
                 .collect(Collectors.toList()));
     }
 

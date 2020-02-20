@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "e55ca655-506c-4b71-b9b1-a4b02c1e7aa6",
+		"name": "postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": " http://localhost:8080/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"email1\",\n\t\"password\":\"123123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": " http://localhost:8080/users",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWFpbDEiLCJleHAiOjE1ODI1ODE2MDB9.rOWX7WvstLlFENE0iqu_tvrgCMOkypllY4xvgCt-75Juc9J4ORR54Rnd9PROJxVy4zhbFbaaDdutrn3NcAAqCw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": " http://localhost:8080/users/article/green",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWFpbDEiLCJleHAiOjE1ODI0OTUyMDB9.obqGkMbR5APtGvPHOIWn1rMVxY8esZGxiNqJVly8bKWmgykY5-B-tLhROMWZ7-PZrkl2Ejn_dJNXJZfILYbMSQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/users/article/green",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"article",
+						"green"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": " http://localhost:8080/users/18",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWFpbDEiLCJleHAiOjE1ODI1ODE2MDB9.rOWX7WvstLlFENE0iqu_tvrgCMOkypllY4xvgCt-75Juc9J4ORR54Rnd9PROJxVy4zhbFbaaDdutrn3NcAAqCw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/users/18",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"18"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": " http://localhost:8080/users/article-great-than-3",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWFpbDEiLCJleHAiOjE1ODI1ODE2MDB9.rOWX7WvstLlFENE0iqu_tvrgCMOkypllY4xvgCt-75Juc9J4ORR54Rnd9PROJxVy4zhbFbaaDdutrn3NcAAqCw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/users/article-great-than-3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"article-great-than-3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": " http://localhost:8080/users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWFpbDEiLCJleHAiOjE1ODI1ODE2MDB9.rOWX7WvstLlFENE0iqu_tvrgCMOkypllY4xvgCt-75Juc9J4ORR54Rnd9PROJxVy4zhbFbaaDdutrn3NcAAqCw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/users",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"email10@ukr.net\",\n\t\"password\":\"123123123\",\n\t\"confirmPassword\":\"123123123\",\n\t\"firstName\":\"name10\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/article",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlbWFpbDEiLCJleHAiOjE1ODI0OTUyMDB9.obqGkMbR5APtGvPHOIWn1rMVxY8esZGxiNqJVly8bKWmgykY5-B-tLhROMWZ7-PZrkl2Ejn_dJNXJZfILYbMSQ",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\":\"someText\",\n\t\"color\":\"GREEN\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/article",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"article"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

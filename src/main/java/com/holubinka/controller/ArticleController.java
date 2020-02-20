@@ -13,7 +13,6 @@ import java.net.URI;
 import java.security.Principal;
 
 @RestController
-
 public class ArticleController {
 
     @Autowired

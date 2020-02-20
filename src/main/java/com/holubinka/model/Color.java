@@ -9,6 +9,7 @@ public enum Color {
     YELLOW("YELLOW");
 
     private String color;
+
     Color(String color) {
         this.color = color;
     }

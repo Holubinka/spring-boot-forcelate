@@ -10,10 +10,16 @@ import java.util.Optional;
 
 public interface UserDao extends JpaRepository<User, Long> {
 
+    @EntityGraph(attributePaths = {"article"})
+    List<User> findAll();
+
+    @EntityGraph(attributePaths = {"article"})
     Optional<User> findByEmail(String email);
 
+    @EntityGraph(attributePaths = {"article"})
     List<User> findAllByAgeGreaterThanEqual(Integer age);
 
+    @EntityGraph(attributePaths = {"article"})
     List<User> findAllByArticle_Color(Color color);
 
     @EntityGraph(attributePaths = {"article"})

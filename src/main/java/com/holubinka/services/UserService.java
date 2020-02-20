@@ -1,7 +1,6 @@
 package com.holubinka.services;
 
 import com.holubinka.controller.model.UserExt;
-import com.holubinka.model.Color;
 import com.holubinka.model.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
