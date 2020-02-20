@@ -17,7 +17,7 @@ HELP.md
 *.iml
 *.ipr
 *.mvn
-mvnw
+mvnw*
 
 
 ### NetBeans ###
