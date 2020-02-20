@@ -16,8 +16,10 @@ HELP.md
 *.iws
 *.iml
 *.ipr
-*.mvn
-mvnw*
+/mvnw
+/mvnw.bat
+mvnw.cmd
+
 
 
 ### NetBeans ###
